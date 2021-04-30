@@ -204,17 +204,7 @@ function validar(pedido, respuesta) {
 
 }
 
-//function validacion(formulario, datos, respuesta){
-//    
-//    
-//    if (datos[0]===formulario['nombre']) {
-//        console.log("wena wena")
-//        const pagina =`<script>alert ("Datos Enviados!");
-//                        window.location.href='http://localhost:8888/login.html'; </script>`
-//        
-//        respuesta.end(pagina);
-//    }
-//}
+ 
 servidor.listen(8888);
 
 console.log('Servidor web iniciado');
