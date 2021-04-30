@@ -34,20 +34,25 @@ const servidor = http.createServer((pedido, respuesta) => {
 
 function encaminar(pedido, respuesta, camino) {
     switch (camino) {
-        
+
         case 'public/GuardarDatos':
         {
-            GuardarContado(pedido, respuesta);
-            break;
-        }
-        
-        
-        case 'public/Login':
-        {
-            recuperar(pedido, respuesta);
+            GuardarContacto(pedido, respuesta);
             break;
         }
 
+
+        case 'public/registrar.html':
+        {
+            guardarUsuario(pedido, respuesta);
+            break;
+        }
+        
+        case 'public/login.html':
+        {
+            validar(pedido , respuesta);
+            break;
+        }
 
         default :
         {
@@ -112,6 +117,151 @@ function DatosAlmacenados(formulario) {
     });
 }
 
+//funcion de guardar el usuario que se esta registrando
+
+function guardarUsuario(pedido, respuesta) {
+    let info = '';
+    pedido.on('data', datosparciales => {
+        info += datosparciales;
+
+    });
+
+    pedido.on('end', function () {
+
+        const formulario = querystring.parse(info);
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        const pagina = `<html>
+    <head>
+        <title>Registro Usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="login">
+            <h3 class="text-center text-white pt-5">Registro Usuario</h3>
+            <div class="container">
+                <div id="login-row" class="row justify-content-center align-items-center">
+                    <div id="login-column" class="col-md-6">
+                        <div id="login-box" class="col-md-12">
+                            <form id="login-form" class="form" action="" method="post">
+                                <h3 class="text-center text-info">REGISTRO</h3>
+                                <div class="form-group">
+                                    <label for="username" class="text-info">Nombre:</label><br>
+                                    <input type="text" name="nombre" id="username" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="text-info">Password:</label><br>
+                                    <input type="text" name="password" id="password" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <br>
+                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Registro">
+
+                                </div>
+                                <div id="register-link" class="text-right">
+                                    <a href="login.html" class="text-info">Volver</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>`;
+        respuesta.end(pagina);
+        
+        respuesta.end();
+        guardarArchivo(formulario);
+    })
+}
+function guardarArchivo(formulario) {
+    const datos = [formulario['nombre'] ,formulario['password']];
+
+    fs.appendFile('public/Usuarios.txt', datos, error => {
+        if (error) {
+            console.log(error);
+        }
+    })
+}
+
+// validar usuario y contraseña
+
+function validar(pedido ,respuesta){
+   let  datos = fs.readFileSync('public/Usuarios.txt').toString().split(",");
+    
+    
+     let info = '';
+    pedido.on('data', datosparciales => {
+        info += datosparciales;
+
+    });
+
+    pedido.on('end', function () {
+
+        const formulario = querystring.parse(info);
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        const pagina = `<html>
+    <head>
+        <title>Ingreso Usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="login">
+            <h3 class="text-center text-white pt-5">Ingreso de Usuario</h3>
+            <div class="container">
+                <div id="login-row" class="row justify-content-center align-items-center">
+                    <div id="login-column" class="col-md-6">
+                        <div id="login-box" class="col-md-12">
+                            <form id="login-form" class="form" action="" method="post">
+                                <h3 class="text-center text-info">Ingreso</h3>
+                                <div class="form-group">
+                                    <label for="username" class="text-info">Nombre:</label><br>
+                                    <input type="text" name="nombre" id="username" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="text-info">Password:</label><br>
+                                    <input type="text" name="password" id="password" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <br>
+                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Ingresar">
+                                </div>
+                                <div id="register-link" class="text-right">
+                                    <a href="registrar.html" class="text-info">Registrar Aqui</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>`;
+        respuesta.end(pagina);
+         
+      //  console.log(formulario);  
+        validacion(formulario , datos);
+    })
+   // console.log(datos);
+    
+}
+
+function validacion(formulario, datos){
+    
+    if (datos[0]===formulario['nombre']) {
+        console.log("wena wena")
+    }
+}
 servidor.listen(8888);
 
 console.log('Servidor web iniciado');
