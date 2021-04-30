@@ -5,61 +5,81 @@
         <title>Contacto</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="fontawesome/css/all.css">
+        <link rel="shortcut icon" href="img/girasol.png">
+        <link href="css/footer.css" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-color: rgba(161,202,241);">
-        
+
         <!-- MENU -->
         <div style="height: 100px; background-color: rgba(48,213,200);"><br>
             <center>
-                <a class="btn btn-outline-dark active" href="index.html" role="button">Inicio</a>
-                <a class="btn btn-outline-dark " href="pagina2.html" role="button">Página 2</a>
-                <a class="btn btn-outline-dark" href="pagina3.html" role="button">Página 3</a>
-                <a class="btn btn-outline-dark" href="pagina4.html" role="button">Página 4</a>
-                <a class="btn btn-outline-dark" href="pagina5.html" role="button">Página 5</a> 
-                <a class="btn btn-outline-dark" href="pagina6.html" role="button">Página 6</a> 
+                <a class="btn btn-outline-dark" href="index.html" role="button">Inicio</a>
+                <a class="btn btn-outline-dark " href="pagina2.html" role="button">Quienes Somos</a>
+                <a class="btn btn-outline-dark" href="pagina3.html" role="button">Historia</a>
+                <a class="btn btn-outline-dark" href="pagina4.html" role="button">Galeria</a>
+                <a class="btn btn-outline-dark active" href="pagina5.html" role="button">Contacto</a> 
+                <a class="btn btn-outline-dark" href="pagina6.html" role="button">Redes Sociales</a> 
                 <a class="btn btn-outline-dark" href="login.html" role="button">Ingresar</a>
             </center>
         </div>
         <!-- FIN MENU -->
-        
-        
+
+
         <section>
             <div class="container">
                 <div class="container">
                     <h4><b>Contactanos</b></h4>
+                    <!-- AGREGO LOCALIDAD -->
                     <div class="container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7917.321296358389!2d-70.66787198884252!3d-33.453903384608495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c507ab673c35%3A0x1f1e3722f07924a!2sIPCHILE%20Sede%20Rep%C3%BAblica!5e0!3m2!1ses-419!2scl!4v1619568149077!5m2!1ses-419!2scl" height="250" width="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
+                    <!-- FIN LOCALIDAD -->
                     <strong><i class="fas fa-phone-square-alt"></i> +569-58769851</strong><br>
-                    <strong>Oficina:</strong> 123456789
+                    <strong><i class="far fa-envelope"></i> contacto@paisajenatural.cl</strong>
                     <hr>
                 </div>
                 <div class="container">
                     <form role="form" id="Formulario" action="GuardarDatos" method="POST">
                         <div class="form-group">
                             <label class="control-label" for="Nombre">Nombres</label>
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Introduzca su nombre" required autofocus />
+                            <input type="text" class="form-control" id="Nombre" name="nombre" placeholder="Introduzca su nombre" required autofocus />
                         </div>            
                         <div class="form-group">
                             <label class="control-label" for="Correo">Dirección de Correo Electrónico</label>
-                            <input type="email" class="form-control" id="Correo" name="Correo" placeholder="Introduzca su correo electrónico" required />
+                            <input type="email" class="form-control" id="Correo" name="correo" placeholder="Introduzca su correo electrónico" required />
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="Mensaje">Mensaje</label>
-                            <textarea rows="5" cols="30" class="form-control" id="Mensaje" name="Mensaje" placeholder="Introduzca su mensaje" required ></textarea>
+                            <textarea rows="5" cols="30" class="form-control" id="Mensaje" name="mensaje" placeholder="Introduzca su mensaje" required ></textarea>
                         </div>
                         <div class="form-group">                
                             <input type="submit" class="btn btn-primary" value="Enviar">
                             <input type="reset" class="btn btn-default" value="Limpiar">                
                         </div>
-                        <div id="respuesta" style="display: none;"></div>
+                        <div id="resultado"></div>
                     </form>
                 </div>       
             </div>
         </section>
+
+        <!-- Footer -->
+        <section id="footer">
+
+            <div >
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <br>
+                    <p class="h6">© Paisajitos Chile.<a class="text-green ml-2" href="http://localhost:8888/pagina5.html" target="_blank"></a></p>
+                </div>
+                <hr>
+            </div>	
+
+        </section>
+        <!-- ./Footer -->
     </body>
+
+
 </html>

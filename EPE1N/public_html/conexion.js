@@ -91,16 +91,9 @@ function GuardarContacto(pedido, respuesta) {
         const formulario = querystring.parse(info);
         respuesta.writeHead(200, {'Content-Type': 'text/html'});
 
-        const pagina = `
-                <h3>DNI :${formulario['dni']}<h3><br>
-                <h3>Nombre :${formulario['nombre']}<h3><br>
-                <h3>Apellido :${formulario['apellido']}<h3><br>
-                <h3>Direccion :${formulario['direccion']}<h3><br>
-                <h3>Numero Expediente :${formulario['numero_expediente']}<h3><br>
-                <h3>Estado :${formulario['estado']}<h3><br>
-                <h3>Fecha Inicio :${formulario['fecha_i']}<h3><br>
-                <h3>Fecha termino :${formulario['fecha_t']}<h3><br>
-                `;
+        const pagina = `<script>alert ("Datos Enviados!");
+                        window.location.href='http://localhost:8888/pagina5.html'; </script>`;
+        
         respuesta.end(pagina);
         DatosAlmacenados(formulario);
     });
@@ -108,9 +101,11 @@ function GuardarContacto(pedido, respuesta) {
 
 
 function DatosAlmacenados(formulario) {
-    const datos = `Nombre:${formulario['nombre']}<br>
-                Email:${formulario['email']}<br>
-                Mensaje:${formulario['mensaje']}<hr>`;
+    const datos =`
+                Nombre:${formulario['nombre']}
+                Email:${formulario['correo']}
+                Mensaje:${formulario['mensaje']}
+                ********************************`;
     fs.appendFile('public/Contacto.txt', datos, error => {
         if (error)
             console.log(error);
