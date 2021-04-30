@@ -142,7 +142,7 @@ function guardarArchivo(formulario) {
         if (error) {
             console.log(error);
         }
-    })
+    }) 
 
 }
 

@@ -2,4 +2,4 @@
                 Nombre:ffff
                 Email:pepe@pepe.cl
                 Mensaje:ffffffff
-                ********************************
+                ******************************** 
