@@ -21,7 +21,10 @@ section .section-title {
     text-transform: uppercase;
 }
 #footer {
-    background: #007b5e !important;
+    background: #87cefa !important;
+    position:fixed;
+    bottom: 0;
+    width: 100%;
 }
 #footer h5{
 	padding-left: 10px;
@@ -75,6 +78,7 @@ section .section-title {
     font-weight: 100%;
 }
 
+}
 @media (max-width:767px){
 	#footer h5 {
     padding-left: 0;
